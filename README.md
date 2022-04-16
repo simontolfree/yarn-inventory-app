@@ -17,7 +17,15 @@ $ npm run start
 # watch mode
 $ npm run start
 ```
+## Running the api
 
+```bash
+# development
+$ cd laravel
+
+# watch mode
+$ php artisan serve
+```
 ## Test
 
 ```bash
