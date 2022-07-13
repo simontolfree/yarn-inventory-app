@@ -19,8 +19,6 @@ class Menus implements MenuInterface{
         $this->mb->addLink('Dashboard', '/', 'cui-speedometer');
         $this->mb->addLink('Login', '/login', 'cui-account-logout');
         $this->mb->addLink('Register', '/register', 'cui-account-logout');
-        $this->mb->addLink('Download CoreUI', 'https://coreui.io', 'cui-cloud-download');
-        $this->mb->addLink('Try CoreUI PRO', 'https://coreui.io/pro/', 'cui-layers');
     }
 
     private function getAdminMenu(){
@@ -41,7 +39,7 @@ class Menus implements MenuInterface{
             $this->mb->addLink('Pagination',    '/base/pagination');
             $this->mb->addLink('Popovers',      '/base/popovers');
             $this->mb->addLink('Progress',      '/base/progress');
-           // $this->mb->addLink('Scrollspy',     '/base/scrollspy');  
+           // $this->mb->addLink('Scrollspy',     '/base/scrollspy');
             $this->mb->addLink('Switches',      '/base/switches');
             $this->mb->addLink('Tables',        '/base/tables');
             $this->mb->addLink('Tabs',          '/base/tabs');
@@ -72,8 +70,6 @@ class Menus implements MenuInterface{
             $this->mb->addLink('Error 404',     '/404');
             $this->mb->addLink('Error 500',     '/500');
         $this->mb->endDropdown();
-        $this->mb->addLink('Download CoreUI', 'https://coreui.io', 'cui-cloud-download');
-        $this->mb->addLink('Try CoreUI PRO', 'https://coreui.io/pro/', 'cui-layers');
     }
 
     public function get($roles){
