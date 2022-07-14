@@ -10,7 +10,7 @@ class MenuController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
@@ -23,14 +23,14 @@ class MenuController extends Controller
             }
         } catch (Exception $e) {
             $roles = '';
-        }   
+        }
         if($request->has('menu')){
             $menuName = $request->input('menu');
         }else{
             $menuName = 'sidebar menu';
         }
         $menus = new GetSidebarMenu();
-        return response()->json( $menus->get( $roles, $menuName ) );
+        return response()->json( ['menu'=>$menus->get( $roles, $menuName ), 'expired_token'=> $user] );
     }
 
 }
