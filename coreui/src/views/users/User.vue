@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     getUserData (id) {
-      const user = usersData.find((user, index) => index + 1 == id)
+      const user = productsData.find((user, index) => index + 1 == id)
       const userDetails = user ? Object.entries(user) : [['id', 'Not found']]
       return userDetails.map(([key, value]) => { return { key, value } })
     },
