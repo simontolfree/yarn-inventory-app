@@ -127,7 +127,8 @@ export default {
 
     axios.get( this.$apiAdress + '/api/menu?token=' + localStorage.getItem("api_token") )
     .then(function (response) {
-      self.nav = self.rebuildData(response.data);
+      self.nav = self.rebuildData(response.data.menu);
+      if(!response.data.expired_token) localStorage.clear();
     }).catch(function (error) {
       console.log(error);
       self.$router.push({ path: '/login' });
