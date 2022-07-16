@@ -9,7 +9,7 @@ const router = new VueRouter()
 
 localVue.use(CoreuiVue)
 
-describe('User.vue', () => {
+describe('RawMat.vue', () => {
   it('has a name', () => {
     expect(User.name).toBe('User')
   })
