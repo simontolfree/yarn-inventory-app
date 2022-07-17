@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
 // Containers
 const TheContainer = () => import('@/containers/TheContainer')
 
@@ -57,6 +58,21 @@ const Register = () => import('@/views/pages/Register')
 const Users = () => import('@/views/users/Users')
 const User = () => import('@/views/users/User')
 const EditUser = () => import('@/views/users/EditUser')
+
+// Products
+const Product = () => import('@/views/products/Product')
+const Products = () => import('@/views/products/Products')
+//const EditUser = () => import('@/views/users/EditUser')
+
+// Events
+const Event = () => import('@/views/events/Event')
+const Events = () => import('@/views/events/Events')
+const NewEvent = () => import('@/views/events/NewEvent')
+
+// Raw Mats
+const RawMat = () => import('@/views/raw_mats/RawMat')
+const RawMats = () => import('@/views/raw_mats/RawMats')
+const EditRawMat = () => import('@/views/raw_mats/EditRawMat')
 
 //Notes
 const Notes = () => import('@/views/notes/Notes')
@@ -120,6 +136,7 @@ router.beforeEach((to, from, next) => {
   if(roles != null){
     roles = roles.split(',')
   }
+  if(roles===null)localStorage.clear();
   if(to.matched.some(record => record.meta.requiresAdmin)) {
     if(roles != null && roles.indexOf('admin') >= 0 ){
       next()
@@ -164,7 +181,10 @@ function configRoutes () {
         {
           path: 'dashboard',
           name: 'Dashboard',
-          component: Dashboard
+          component: Dashboard,
+          meta:{
+            requiresAdmin: true
+          }
         },
         {
           path: 'colors',
@@ -321,6 +341,108 @@ function configRoutes () {
               meta: { label: 'Edit User' },
               name: 'Edit User',
               component: EditUser,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+          ]
+        },
+        {
+          path: 'products',
+          meta: { label: 'Products'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Products,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+            {
+              path: 'new',
+              meta: { label: 'User Details'},
+              name: 'User',
+              component: Product,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+            {
+              path: ':id/edit',
+              meta: { label: 'Edit User' },
+              name: 'Edit User',
+              component: EditUser,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+          ]
+        },
+        {
+          path: 'events',
+          meta: { label: 'Products'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: Events,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+            {
+              path: ':id/edit',
+              meta: { label: 'User Details'},
+              name: 'User',
+              component: Event,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+            {
+              path: 'new',
+              meta: { label: 'Edit User' },
+              name: 'Edit User',
+              component: NewEvent,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+          ]
+        },
+        {
+          path: 'raw_mats',
+          meta: { label: 'raw_mats'},
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: '',
+              component: RawMats,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+            {
+              path: 'new',
+              meta: { label: 'User Details'},
+              name: 'User',
+              component: RawMat,
+              meta:{
+                requiresAdmin: true
+              }
+            },
+            {
+              path: ':id/edit',
+              meta: { label: 'Edit User' },
+              name: 'Edit User',
+              component: EditRawMat,
               meta:{
                 requiresAdmin: true
               }
