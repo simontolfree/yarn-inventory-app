@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Invoice;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 //use database\seeds\NotesTableSeeder;
 
@@ -31,6 +33,11 @@ class DatabaseSeeder extends Seeder
             ExampleSeeder::class,
             BREADSeeder::class,
             EmailSeeder::class,
+            InvoiceSeeder::class,
+            RawMaterialsSeeder::class,
+            ProductSeeder::class,
+            MatListSeeder::class,
+
         ]);
     }
 }
