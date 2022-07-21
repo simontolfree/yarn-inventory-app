@@ -12,6 +12,20 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('inventory', 'InventoryController@index');
+Route::get('raw', 'RawMaterialsController@index');
+Route::get('invoice/{id}', 'InvoiceController@index');
+Route::get('products', 'ProductController@index');
+Route::get('products/{id}', 'ProductController@product_details');
+Route::get('products/add_new_product', 'ProductController@add_new_product');
+Route::get('products/add_new_material', 'ProductController@add_new_material');
+Route::get('products/add_new_material/{invoice_id}', 'ProductController@add_new_material');
+
+Route::post('events', 'EventsController@add_new_event');
+Route::get('events', 'EventsController@get_all_events');
+Route::get('events/{events}/products', 'EventsController@event_products');
+Route::get('products/search/{search}/', 'ProductController@find_product');
+
 
 Route::group(['middleware' => 'api'], function ($router) {
     Route::get('menu', 'MenuController@index');
@@ -19,12 +33,12 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('register', 'AuthController@register'); 
+    Route::post('register', 'AuthController@register');
 
     Route::resource('notes', 'NotesController');
 
     Route::resource('resource/{table}/resource', 'ResourceController');
-    
+
     Route::group(['middleware' => 'admin'], function ($router) {
 
         Route::resource('mail',        'MailController');
@@ -35,7 +49,7 @@ Route::group(['middleware' => 'api'], function ($router) {
 
         Route::resource('users', 'UsersController')->except( ['create', 'store'] );
 
-        Route::prefix('menu/menu')->group(function () { 
+        Route::prefix('menu/menu')->group(function () {
             Route::get('/',         'MenuEditController@index')->name('menu.menu.index');
             Route::get('/create',   'MenuEditController@create')->name('menu.menu.create');
             Route::post('/store',   'MenuEditController@store')->name('menu.menu.store');
@@ -43,7 +57,7 @@ Route::group(['middleware' => 'api'], function ($router) {
             Route::post('/update',  'MenuEditController@update')->name('menu.menu.update');
             Route::get('/delete',   'MenuEditController@delete')->name('menu.menu.delete');
         });
-        Route::prefix('menu/element')->group(function () { 
+        Route::prefix('menu/element')->group(function () {
             Route::get('/',             'MenuElementController@index')->name('menu.index');
             Route::get('/move-up',      'MenuElementController@moveUp')->name('menu.up');
             Route::get('/move-down',    'MenuElementController@moveDown')->name('menu.down');
