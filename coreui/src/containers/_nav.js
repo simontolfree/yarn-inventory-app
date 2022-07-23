@@ -253,7 +253,7 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'Download CoreUI',
+        name: 'Raw Materials',
         href: 'http://coreui.io/vue/',
         icon: { name: 'cil-cloud-download', class: 'text-white' },
         _class: 'bg-success text-white',
